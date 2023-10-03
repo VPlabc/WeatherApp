@@ -53,9 +53,12 @@ from threading import Thread, Lock
 global start
 start = True
 
+
+
 def polling_thread():
     """Modbus polling thread."""
-    global update, LOCATION , start
+    global update, LOCATION , start, once
+    once = True
     counters = 0
     # polling loop
     while True:
@@ -64,7 +67,9 @@ def polling_thread():
             loadConfig()
             getWeather(LOCATION)
 
-        print("updated :", update)
+        if once:
+            once = False 
+            print("updated :", update)
         counters = counters + 1
         if counters > 60 and load == False:
             counters = 0
