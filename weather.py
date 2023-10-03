@@ -53,7 +53,7 @@ from threading import Thread, Lock
 global start
 start = True
 
-
+ 
 
 def polling_thread():
     """Modbus polling thread."""
